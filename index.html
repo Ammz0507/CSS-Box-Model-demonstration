@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOHAMMED AMMAAR KHAN</title>
+    <meta name="Description" content="Demonstrating CSS Box Model with advanced padding, borders, margins, shadows on a unique personal profile page.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: linear-gradient(145deg, #f0f4f8 0%, #d9e2ec 100%);
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto 60px; 
+        }
+        header {
+            background: rgba(255,255,255,0.9);
+            border: 12px double #3498db; 
+            border-radius: 32px 16px 32px 16px; 
+            padding: 32px 48px 24px; 
+            margin-bottom: 48px;
+            box-shadow: 
+                0 12px 32px rgba(52,152,219,0.25),
+                inset 0 4px 12px rgba(255,255,255,0.8),
+                inset 0 -4px 12px rgba(0,0,0,0.05); 
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 24px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: 600;
+            padding: 12px 24px; 
+            border: 3px solid transparent;
+            border-radius: 24px;
+            transition: all 0.3s ease;
+            background-clip: padding-box;
+        }
+        nav a:hover {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+            border-color: #2980b9;
+            box-shadow: 0 6px 20px rgba(52,152,219,0.4);
+            transform: translateY(-4px);
+            margin: 0 2px; 
+        }
+        .hero {
+            text-align: center;
+            padding: 64px 40px 48px;
+            margin: 48px 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 0 0 48px 48px;
+            border: 8px solid rgba(255,255,255,0.2);
+            box-shadow: 
+                0 20px 60px rgba(102,126,234,0.4),
+                inset 0 2px 8px rgba(255,255,255,0.3);
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 16px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+        main section {
+            margin-bottom: 56px;
+            background: rgba(255,255,255,0.95);
+            border: 2px solid #e8ecf4;
+            border-radius: 24px;
+            padding: 40px 48px;
+            box-shadow: 
+                0 16px 48px rgba(0,0,0,0.12),
+                0 8px 24px rgba(0,0,0,0.08),
+                inset 0 1px 4px rgba(255,255,255,1);
+        }
+        h2 {
+            color: #2c3e50;
+            font-size: 2.4rem;
+            margin: -24px 0 40px 0; 
+            text-align: center;
+            position: relative;
+            padding: 16px 32px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            color: white;
+            border-radius: 20px 0 20px 0;
+            box-shadow: 0 8px 24px rgba(52,152,219,0.3);
+        }
+        .profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 48px;
+            margin-top: 32px;
+        }
+        .profile-img {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            border: 8px solid #3498db;
+            box-shadow: 
+                0 16px 40px rgba(52,152,219,0.3),
+                inset 0 4px 12px rgba(255,255,255,0.9);
+            margin: 0 auto;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+        .skill-item {
+            padding: 28px 32px;
+            border: 3px solid #ecf0f1;
+            border-radius: 16px;
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+            margin: 12px;
+        }
+        .skill-item:hover {
+            border-color: #3498db;
+            box-shadow: 0 20px 60px rgba(52,152,219,0.25);
+            transform: translateY(-12px);
+            margin: 0 12px 24px;
+        }
+        .skill-bar {
+            height: 14px;
+            background: #ecf0f1;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 16px;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            border-radius: 12px;
+            width: 0;
+            transition: width 2.5s ease-out;
+            box-shadow: 0 0 16px rgba(52,152,219,0.6);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        .project-card {
+            border: 4px solid transparent;
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 12px 36px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(52,152,219,0.05) 50%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            z-index: 1;
+        }
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        .project-card:hover {
+            border-color: #3498db;
+            box-shadow: 0 28px 80px rgba(52,152,219,0.3);
+            transform: translateY(-16px) scale(1.02);
+        }
+        .project-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        .project-content {
+            padding: 32px 28px 28px;
+        }
+        form {
+            display: grid;
+            gap: 24px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        label {
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 8px;
+            display: block;
+        }
+        input, textarea {
+            padding: 20px 24px;
+            border: 3px solid #e8ecf4;
+            border-radius: 16px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafbfc;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 4px rgba(52,152,219,0.15);
+            background: white;
+            transform: translateY(-2px);
+        }
+        button {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 24px 48px;
+            border: none;
+            border-radius: 24px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 12px 32px rgba(52,152,219,0.4);
+            transition: all 0.3s ease;
+            margin-top: 16px;
+        }
+        button:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 48px rgba(52,152,219,0.5);
+        }
+        footer {
+            background: linear-gradient(180deg, #2c3e50, #34495e);
+            color: white;
+            padding: 48px 40px 32px;
+            border-radius: 32px 32px 0 0;
+            margin-top: 72px;
+            text-align: center;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin: 32px 0;
+        }
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+            background: rgba(255,255,255,0.15);
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.6rem;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(12px);
+        }
+        .social-links a:hover {
+            background: rgba(52,152,219,0.9);
+            border-color: rgba(52,152,219,0.8);
+            transform: translateY(-12px) scale(1.15);
+            box-shadow: 0 16px 40px rgba(52,152,219,0.4);
+        }
+        @media (max-width: 768px) {
+            .profile-grid { grid-template-columns: 1fr; }
+            .hero { padding: 48px 24px; }
+            main section { padding: 32px 24px; margin-bottom: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <section id="home" class="hero">
+            <h1>Mohammed Ammaar Khan</h1>
+            <p>Full-Stack Developer showcasing CSS Box Model mastery through precise padding, borders, margins, and shadows. MERN | Cybersecurity | Data Structures.</p>
+        </section>
+        
+        <main>
+            <section id="about">
+                <h2>About Me</h2>
+                <div class="profile-grid">
+                    <img src="D:\ALL MY FILES\All My Projects\ELEVATE LABS NEW\Task 2\My Photo 1.jpg" alt="Mohammed Ammaar Khan" class="profile-img">
+                    <div>
+                        <p style="font-size: 1.1rem; margin-bottom: 24px;">Engineering student from Pāli, Maharashtra, specializing in web development with hands-on MERN projects, cybersecurity fundamentals, and competitive programming.</p>
+                        <p>Mastering CSS Box Model for pixel-perfect layouts using layered borders, asymmetric padding/margins, inset shadows, and border-box sizing.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="skills">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <h3>JavaScript/React</h3>
+                        <div class="skill-bar"><div class="skill-progress" data-width="92%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Node.js/Express</h3>
+                        <div class="skill-bar"><div class="skill-progress" data-width="88%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <h3>MongoDB/SQL</h3>
+                        <div class="skill-bar"><div class="skill-progress" data-width="85%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Cybersecurity</h3>
+                        <div class="skill-bar"><div class="skill-progress" data-width="82%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Data Structures</h3>
+                        <div class="skill-bar"><div class="skill-progress" data-width="90%"></div></div>
+                    </div>
+                    <div class="skill-item">
+                        <h3>Python/C++</h3>
+                        <div class="skill-bar"><div class="skill-progress" data-width="87%"></div></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="projects">
+                <h2>Featured Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <img src="D:\ALL MY FILES\All My Projects\ELEVATE LABS NEW\Task 2\Quiz App.png" alt="Quiz App">
+                        <div class="project-content">
+                            <h3>Interactive Quiz App</h3>
+                            <p>MERN stack quiz platform with real-time scoring and MongoDB backend.</p>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="D:\ALL MY FILES\All My Projects\ELEVATE LABS NEW\Task 2\Portfolio Generator.png" alt="Portfolio Generator">
+                        <div class="project-content">
+                            <h3>Portfolio Generator</h3>
+                            <p>Next.js Markdown-to-website converter with Tailwind themes.</p>
+                        </div>
+                    </article>
+                    <article class="project-card">
+                        <img src="D:\ALL MY FILES\All My Projects\ELEVATE LABS NEW\Task 2\Resume Builder.png" alt="Resume Builder">
+                        <div class="project-content">
+                            <h3>AI Resume Builder</h3>
+                            <p>AI-powered resume creator with PDF export and suggestions.</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            
+            <section id="contact">
+                <h2>Contact</h2>
+                <form>
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="6" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/Ammz0507" aria-label="GitHub"></a>
+            <a href="https://www.linkedin.com/in/mohammed-khan-9711b0340/" aria-label="LinkedIn"></a>
+            <a href="mailto:mohammedammaarkhan@email.com" aria-label="Email">✉</a>
+        </div>
+        <p>© 2026 Mohammed Ammaar Khan | Pāli, Maharashtra | CSS Box Model Mastery Project</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.skill-progress');
+                    progressBars.forEach(bar => {
+                        bar.style.width = bar.dataset.width;
+                    });
+                }
+            });
+        });
+        document.querySelectorAll('#skills').forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
